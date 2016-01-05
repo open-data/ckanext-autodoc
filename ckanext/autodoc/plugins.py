@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf-8
 import ckan.plugins as p
+import pylons.config as config
 
 
 class AutodocPlugin(p.SingletonPlugin):
@@ -14,7 +15,7 @@ class AutodocPlugin(p.SingletonPlugin):
     def before_map(self, map):
         map.connect(
             'list',
-            '/api/current/list',
+            config.get('ckanext.autodoc.url', '/api/current/list'),
             controller='ckanext.autodoc.controllers:APIExtController',
             action='list'
         )
